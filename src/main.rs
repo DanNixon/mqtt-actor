@@ -11,7 +11,7 @@ use script::Message;
 use std::path::PathBuf;
 use tokio::{signal, sync::broadcast};
 
-/// A simple tool to automate/schedule MQTT messages
+/// A simple tool to schedule MQTT messages
 #[derive(Debug, Parser)]
 struct Cli {
     /// Address of MQTT broker to connect to
