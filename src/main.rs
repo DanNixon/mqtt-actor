@@ -15,27 +15,23 @@ use tokio::{signal, sync::broadcast};
 #[derive(Debug, Parser)]
 struct Cli {
     /// Address of MQTT broker to connect to
-    #[clap(
-        long,
-        env = "MQTT_ACTOR_BROKER",
-        default_value = "tcp://localhost:1883"
-    )]
+    #[clap(long, env = "MQTT_BROKER", default_value = "tcp://localhost:1883")]
     mqtt_broker: String,
 
     /// Client ID to use when connecting to MQTT broker
-    #[clap(long, env = "MQTT_ACTOR_CLIENT_ID", default_value = "mqtt-actor")]
+    #[clap(long, env = "MQTT_CLIENT_ID", default_value = "mqtt-actor")]
     mqtt_client_id: String,
 
     /// MQTT username
-    #[clap(long, env = "MQTT_ACTOR_USERNAME", default_value = "")]
+    #[clap(long, env = "MQTT_USERNAME", default_value = "")]
     mqtt_username: String,
 
     /// MQTT password
-    #[clap(long, env = "MQTT_ACTOR_PASSWORD", default_value = "")]
+    #[clap(long, env = "MQTT_PASSWORD", default_value = "")]
     mqtt_password: String,
 
     /// Script file delimiter
-    #[clap(long, env = "MQTT_ACTOR_SCRIPT_DELIMITER", default_value_t = b'|')]
+    #[clap(long, env = "SCRIPT_DELIMITER", default_value_t = b'|')]
     script_delimiter: u8,
 
     /// Directory to watch for script files
