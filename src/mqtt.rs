@@ -23,6 +23,7 @@ pub(crate) fn run(tx: Sender<Event>, args: &Cli) -> Result<JoinHandle<()>> {
         .wait()?;
 
     let mut rx = tx.subscribe();
+    let qos = args.mqtt_qos;
 
     Ok(tokio::spawn(async move {
         while let Ok(event) = rx.recv().await {
@@ -32,7 +33,7 @@ pub(crate) fn run(tx: Sender<Event>, args: &Cli) -> Result<JoinHandle<()>> {
                     return;
                 }
                 Event::SendMessage(msg) => {
-                    match client.try_publish(Message::new(msg.topic, msg.message, 1)) {
+                    match client.try_publish(Message::new(msg.topic, msg.message, qos)) {
                         Ok(delivery_token) => {
                             if let Err(e) = delivery_token.wait() {
                                 log::error! {"Error sending message: {}", e};

@@ -22,6 +22,10 @@ struct Cli {
     #[clap(long, env = "MQTT_CLIENT_ID", default_value = "mqtt-actor")]
     mqtt_client_id: String,
 
+    /// MQTT QoS, must be 0, 1 or 2
+    #[clap(long, env = "MQTT_QOS", default_value = "0")]
+    mqtt_qos: i32,
+
     /// MQTT username
     #[clap(long, env = "MQTT_USERNAME", default_value = "")]
     mqtt_username: String,
