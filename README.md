@@ -24,7 +24,7 @@ For testing and small/temporary deployments, Podman (or Docker if you really mus
 podman run \
   --rm -it \
   -e RUST_LOG=debug \
-  -e MQTT_ACTOR_BROKER=broker.hivemq.com \
+  -e MQTT_BROKER=broker.hivemq.com \
   -v ./examples/:/config \
   ghcr.io/dannixon/mqtt-actor:main
 ```
