@@ -29,5 +29,4 @@ podman run \
   ghcr.io/dannixon/mqtt-actor:main
 ```
 
-For more serious deployements, Kubernetes is a better option.
-A barebones deployment is <TODO>.
+For more serious deployments, Kubernetes is a better option.
