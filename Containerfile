@@ -14,7 +14,8 @@ RUN RUSTFLAGS=-Ctarget-feature=-crt-static cargo install \
 FROM docker.io/library/alpine:3.15
 
 RUN apk add \
-  libgcc
+  libgcc \
+  tini
 
 COPY --from=builder \
   /usr/local/bin/mqtt-actor \
@@ -22,5 +23,4 @@ COPY --from=builder \
 
 RUN mkdir /config
 
-ENTRYPOINT ["/usr/local/bin/mqtt-actor"]
-CMD ["/config"]
+ENTRYPOINT ["/sbin/tini", "--", "/usr/local/bin/mqtt-actor", "/config"]
