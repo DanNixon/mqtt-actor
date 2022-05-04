@@ -9,12 +9,12 @@ pub(crate) fn run(tx: Sender<Event>) -> JoinHandle<()> {
         loop {
             while let Ok(event) = rx.try_recv() {
                 if event == Event::Exit {
-                    log::debug! {"Tick task exit"};
+                    log::debug!("Task exit");
                     return;
                 }
             }
             if let Err(e) = tx.send(Event::Tick) {
-                log::error! {"Failed to send tick event: {}", e};
+                log::error!("Failed to send tick event: {}", e);
             }
             tokio::time::sleep(Duration::from_secs(1)).await;
         }

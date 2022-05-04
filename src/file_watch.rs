@@ -9,8 +9,8 @@ use std::path::Path;
 use tokio::sync::broadcast::Sender;
 
 pub(crate) fn run(tx: Sender<Event>, path: &Path) -> Result<RecommendedWatcher> {
-    let mut watcher = notify::recommended_watcher(
-        move |event: std::result::Result<event::Event, Error>| {
+    let mut watcher =
+        notify::recommended_watcher(move |event: std::result::Result<event::Event, Error>| {
             if let Ok(event) = event {
                 if event
                     .paths
@@ -28,14 +28,16 @@ pub(crate) fn run(tx: Sender<Event>, path: &Path) -> Result<RecommendedWatcher> 
                             | EventKind::Remove(_)
                     )
                 {
-                    log::debug! {"Got filesystem event that is probably a script file: {:?}", event};
+                    log::debug!(
+                        "Got filesystem event that is probably a script file: {:?}",
+                        event
+                    );
                     if let Err(e) = tx.send(Event::ReloadScript) {
-                        log::error! {"Failed to send reload trigger: {}", e};
+                        log::error!("Failed to send reload trigger: {}", e);
                     }
                 }
             }
-        },
-    )?;
+        })?;
 
     watcher.watch(path, RecursiveMode::Recursive)?;
 

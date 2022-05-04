@@ -35,7 +35,7 @@ impl FromStr for Timestamp {
                 return Ok(Timestamp::Absolute(t));
             }
             Err(e) => {
-                log::debug! {"Failed to parse \"{}\" as RFC2822 timestamp: {}", s, e};
+                log::debug!("Failed to parse \"{}\" as RFC2822 timestamp: {}", s, e);
             }
         }
 
@@ -44,7 +44,7 @@ impl FromStr for Timestamp {
                 return Ok(Timestamp::Absolute(t));
             }
             Err(e) => {
-                log::debug! {"Failed to parse \"{}\" as RFC3339 timestamp: {}", s, e};
+                log::debug!("Failed to parse \"{}\" as RFC3339 timestamp: {}", s, e);
             }
         }
 
@@ -53,7 +53,7 @@ impl FromStr for Timestamp {
                 return Ok(Timestamp::Relative(Duration::seconds(t)));
             }
             Err(e) => {
-                log::debug! {"Failed to parse \"{}\" as offset in seconds: {}", s, e};
+                log::debug!("Failed to parse \"{}\" as offset in seconds: {}", s, e);
             }
         }
 
@@ -111,7 +111,7 @@ fn load_messages<R: Read>(delimiter: u8, reader: R) -> Vec<Message> {
         .filter_map(|m| match m {
             Ok(m) => Some(m),
             Err(e) => {
-                log::warn! {"Failed to parse message script: {}", e};
+                log::warn!("Failed to parse message script: {}", e);
                 None
             }
         })
@@ -150,14 +150,14 @@ impl Script {
         };
 
         if let Err(e) = s.reload() {
-            log::error! {"Initial script loading failed: {}", e};
+            log::error!("Initial script loading failed: {}", e);
         }
 
         Ok(s)
     }
 
     pub(crate) fn reload(&mut self) -> Result<()> {
-        log::debug! {"Building script from \"{}\"", &self.source_dir.display()};
+        log::debug!("Building script from \"{}\"", &self.source_dir.display());
 
         self.messages = glob(&format!("{}/**/*.txt", self.source_dir.display()))?
             .filter_map(|path| match path {
@@ -185,9 +185,9 @@ impl Script {
             }
         });
 
-        log::info! {"Loaded messages:"};
+        log::info!("Loaded messages:");
         for m in &self.messages {
-            log::info! {"{:?}", m};
+            log::info!("{:?}", m);
         }
 
         Ok(())

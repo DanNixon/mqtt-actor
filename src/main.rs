@@ -55,12 +55,12 @@ async fn main() -> Result<()> {
     env_logger::Builder::from_env(Env::default().default_filter_or("info")).init();
 
     let args = Cli::parse();
-    log::debug! {"{:?}", args};
 
     if !args.script_source_dir.is_dir() {
-        return Err(
-            anyhow! {"Path \"{}\" is not an accessible directory", args.script_source_dir.display()},
-        );
+        return Err(anyhow!(
+            "Path \"{}\" is not an accessible directory",
+            args.script_source_dir.display()
+        ));
     }
 
     let (tx, mut rx) = broadcast::channel::<Event>(16);
@@ -74,20 +74,20 @@ async fn main() -> Result<()> {
     ];
 
     loop {
-        let should_exit = tokio::select! {
+        let should_exit = tokio::select!(
             _ = signal::ctrl_c() => true,
             event = rx.recv() => matches!(event, Ok(Event::Exit)),
-        };
+        );
         if should_exit {
             break;
         }
     }
 
-    log::info! {"Terminating..."};
+    log::info!("Terminating...");
     tx.send(Event::Exit)?;
     for handle in tasks {
         if let Err(e) = handle.await {
-            log::error! {"Failed waiting for task to finish: {}", e};
+            log::error!("Failed waiting for task to finish: {}", e);
         }
     }
 

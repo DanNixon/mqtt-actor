@@ -29,7 +29,7 @@ pub(crate) fn run(tx: Sender<Event>, args: &Cli) -> Result<JoinHandle<()>> {
         while let Ok(event) = rx.recv().await {
             match event {
                 Event::Exit => {
-                    log::debug! {"MQTT task exit"};
+                    log::debug!("Task exit");
                     return;
                 }
                 Event::SendMessage(msg) => {

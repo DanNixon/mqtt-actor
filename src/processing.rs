@@ -11,19 +11,19 @@ pub(crate) fn run(tx: Sender<Event>, args: &Cli) -> Result<JoinHandle<()>> {
         while let Ok(event) = rx.recv().await {
             match event {
                 Event::Exit => {
-                    log::debug! {"Processing task exit"};
+                    log::debug!("Task exit");
                     return;
                 }
                 Event::ReloadScript => {
                     if let Err(e) = script.reload() {
-                        log::error! {"Failed to reload script: {}", e};
+                        log::error!("Failed to reload script: {}", e);
                     }
                 }
                 Event::Tick => {
                     for message in script.poll() {
-                        log::info! {"Sending message: {:?}", message};
+                        log::info!("Sending message: {:?}", message);
                         if let Err(e) = tx.send(Event::SendMessage(message)) {
-                            log::error! {"Failed to send send message event: {}", e};
+                            log::error!("Failed to send send message event: {}", e);
                         }
                     }
                 }
