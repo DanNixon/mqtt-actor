@@ -13,6 +13,7 @@ use tokio::{signal, sync::broadcast};
 
 /// A simple tool to schedule MQTT messages
 #[derive(Debug, Parser)]
+#[clap(author, version, about, long_about = None)]
 struct Cli {
     /// Address of MQTT broker to connect to
     #[clap(long, env = "MQTT_BROKER", default_value = "tcp://localhost:1883")]
