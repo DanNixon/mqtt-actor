@@ -161,11 +161,28 @@ impl Script {
 
         self.messages = glob(&format!("{}/**/*.txt", self.source_dir.display()))?
             .filter_map(|path| match path {
-                Ok(path) => Some(load_messages(
+                Ok(path) => {
+                    if path.iter().any(|i| {
+                        if let Some(i) = i.to_str() {
+                            i.starts_with('.')
+                        } else {
+                            false
+                        }
+                    }) {
+                        log::info!("Discarding path: {:?}", path);
+                        None
+                    } else {
+                        Some(path)
+                    }
+                }
+                Err(_) => None,
+            })
+            .filter_map(|path| {
+                log::info!("Loading file {:?}", path);
+                Some(load_messages(
                     self.source_file_delimiter,
                     BufReader::new(File::open(path).ok()?),
-                )),
-                Err(_) => None,
+                ))
             })
             .flatten()
             .collect();

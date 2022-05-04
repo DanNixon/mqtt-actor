@@ -9,6 +9,7 @@ Rather handy for driving event schedule announcements and other similar tasks.
 TL;DR: see `mqtt-actor --help` and the [examples](./examples).
 
 A "script" is generated from several script fragments, see [examples](./examples) for some examples.
+Script fragments are discovered recursively in the script directory, any file (or directory) not starting with `.` and ending with `.txt` is considered to be an enabled script fragment.
 The general format is as such: `[timestamp] [delimiter] [topic] [delimiter] [message]`.
 
 `[delimiter]` defaults to the pipe (`|`), but can be configured via the command line options.
