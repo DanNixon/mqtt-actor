@@ -369,9 +369,9 @@ checksum = "9a3a5bfb195931eeb336b2a7b4d761daec841b97f947d34394601737a7bba5e4"
 
 [[package]]
 name = "indexmap"
-version = "1.8.1"
+version = "1.8.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0f647032dfaa1f8b6dc29bd3edb7bbef4861b8b8007ebb118d6db284fd59f6ee"
+checksum = "e6012d540c5baa3589337a98ce73408de9b5a25ec9fc2c6fd6be8f0d39e0ca5a"
 dependencies = [
  "autocfg",
  "hashbrown",
@@ -474,7 +474,7 @@ dependencies = [
 
 [[package]]
 name = "mqtt-actor"
-version = "1.3.0"
+version = "1.4.0"
 dependencies = [
  "anyhow",
  "chrono",
@@ -557,15 +557,15 @@ dependencies = [
 
 [[package]]
 name = "os_str_bytes"
-version = "6.0.1"
+version = "6.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "029d8d0b2f198229de29dca79676f2738ff952edf3fde542eb8bf94d8c21b435"
+checksum = "21326818e99cfe6ce1e524c2a805c189a99b5ae555a35d19f9a284b427d86afa"
 
 [[package]]
 name = "paho-mqtt"
-version = "0.10.0"
+version = "0.11.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "aee23a0d2c2eddc5441d4b26ef70cfe6002ff94b0adcbfa8e6be1ccc2f4cbd26"
+checksum = "9fac58bae33ba9679bb4908ffa7c3950114345860d3f9b98340c4943f18ff324"
 dependencies = [
  "async-channel",
  "crossbeam-channel",
@@ -579,9 +579,9 @@ dependencies = [
 
 [[package]]
 name = "paho-mqtt-sys"
-version = "0.6.0"
+version = "0.7.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "38dcc5de4d40eb7ddf7f806eb14dae88f3e534dc3ae1ca83481af18551ce339c"
+checksum = "10e6244f27644eed5709e318a3ad7f785906fbb6030f0a9b9ba50923b456c0c5"
 dependencies = [
  "cmake",
  "openssl-sys",
