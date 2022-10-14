@@ -1,4 +1,7 @@
-# mqtt-actor [![CI](https://github.com/DanNixon/mqtt-actor/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/DanNixon/mqtt-actor/actions/workflows/ci.yml)
+# mqtt-actor
+
+[![CI](https://github.com/DanNixon/mqtt-actor/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/DanNixon/mqtt-actor/actions/workflows/ci.yml)
+[![dependency status](https://deps.rs/repo/github/dannixon/mqtt-actor/status.svg)](https://deps.rs/repo/github/dannixon/mqtt-actor)
 
 Simple tool to schedule MQTT messages.
 
