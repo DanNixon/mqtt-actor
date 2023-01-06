@@ -14,4 +14,4 @@ log = "0.4"
 notify = "5.0.0-pre.13"
 paho-mqtt = "0.11"
 serde = { version = "1", features = ["derive"] }
-tokio = { version = "1.21", features = ["macros", "rt-multi-thread", "signal", "sync", "time"] }
+tokio = { version = "1.23", features = ["macros", "rt-multi-thread", "signal", "sync", "time"] }
